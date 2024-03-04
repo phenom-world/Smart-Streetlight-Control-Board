@@ -40,7 +40,7 @@ const Maintenance = () => {
                   size={40}
                   cursor='pointer'
                   className={`${
-                    step === 0 ? 'fill-foreground/10' : step !== 100 && `fill-foreground/${step}`
+                    step === 0 ? '!fill-foreground/10' : step !== 100 && `!fill-foreground/${step}`
                   }`}
                   onClick={() => {
                     updateAllSliders('groupA', step);

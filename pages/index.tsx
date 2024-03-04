@@ -9,16 +9,16 @@ export default function DashboardPage() {
   const [tab, setTab] = useState<string>('overview');
   return (
     <div className='flex-col md:flex max-w-full'>
-      <div className='flex-1 space-y-4 p-4 md:px-8 '>
+      <div className='flex-1 space-y-4 p-4 md:px-8'>
         <div className='flex items-center justify-between space-y-2'>
           <h2 className='text-xl md:text-2xl font-bold tracking-tight'>Dashboard</h2>
           <ModeToggle />
         </div>
         <SegmentedControl data={dashboardTabs} onChange={(value) => setTab(value)} value={tab}>
-          <TabsContent value='overview' className='space-y-4'>
+          <TabsContent value='overview' className='space-y-4 w-full overflow-scroll'>
             <Overview />
           </TabsContent>
-          <TabsContent value='maintenance' className='space-y-4'>
+          <TabsContent value='maintenance' className='space-y-4 w-full overflow-scroll'>
             <Maintenance />
           </TabsContent>
         </SegmentedControl>
