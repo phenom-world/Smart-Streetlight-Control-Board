@@ -1,6 +1,8 @@
 import { Slider } from '@/components/ui/slider';
 import { CustomTooltip } from '@/components/ui/tooltip';
+import { getFillColor } from '@/lib/utils';
 import { SliderProps } from '@radix-ui/react-slider';
+import { useTheme } from 'next-themes';
 import { BsLightbulbFill } from 'react-icons/bs';
 
 type Props = SliderProps & {
@@ -16,6 +18,7 @@ export default function CustomSlider({
   onValueChange,
   ...props
 }: Props) {
+  const { theme } = useTheme();
   const handleSliderChange = (newValue: number[]) => {
     onValueChange(newValue);
   };
@@ -40,9 +43,7 @@ export default function CustomSlider({
                 key={index}
                 size={20}
                 cursor='pointer'
-                className={`${
-                  step === 0 ? 'fill-foreground/10' : step !== 100 && `fill-foreground/${step}`
-                }`}
+                fill={getFillColor(step, theme)}
                 onClick={() => handleSliderChange([step])}
               />
             </CustomTooltip>
