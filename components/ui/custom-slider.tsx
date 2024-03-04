@@ -22,7 +22,7 @@ export default function CustomSlider({
 
   return (
     <div className='flex gap-4 my-8'>
-      <div className='font-bold whitespace-nowrap w-28'>{label}</div>
+      <div className='font-bold whitespace-nowrap md:w-28'>{label}</div>
       <div className={`relative ${className}`}>
         <Slider
           value={[sliderValue]}

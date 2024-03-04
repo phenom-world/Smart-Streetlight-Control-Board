@@ -1,10 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CustomTooltip } from '@/components/ui/tooltip';
+import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { BsLightbulbFill } from 'react-icons/bs';
 import LightControlGroup from '../light-group';
 
 const Maintenance = () => {
+  const theme = useTheme();
   const [sliderValues, setSliderValues] = useState({
     groupA: [0, 0, 0],
     groupB: [0, 0, 0],
@@ -24,6 +26,12 @@ const Maintenance = () => {
     }));
   };
 
+  const getFillColor = (step: number) => {
+    return theme.theme === 'dark'
+      ? `rgba(255, 255, 255, ${(step == 0 ? 10 : step) / 100})`
+      : `rgba(0, 0, 0, ${(step == 0 ? 10 : step) / 100})`;
+  };
+
   return (
     <div className='grid gap-4 md:grid-cols-1'>
       <Card>
@@ -39,13 +47,11 @@ const Maintenance = () => {
                   key={index}
                   size={40}
                   cursor='pointer'
-                  className={`${
-                    step === 0 ? '!fill-foreground/10' : step !== 100 && `!fill-foreground/${step}`
-                  }`}
                   onClick={() => {
                     updateAllSliders('groupA', step);
                     updateAllSliders('groupB', step);
                   }}
+                  fill={getFillColor(step)}
                 />
               </CustomTooltip>
             ))}

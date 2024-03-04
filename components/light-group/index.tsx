@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CustomTooltip } from '@/components/ui/tooltip';
 import { LightControlGroupProps } from '@/types';
+import { useTheme } from 'next-themes';
 import { BsLightbulbFill } from 'react-icons/bs';
 import CustomSlider from '../ui/custom-slider';
 
@@ -11,6 +12,13 @@ const LightControlGroup = ({
   handleSliderChange,
   updateAllSliders,
 }: LightControlGroupProps) => {
+  const theme = useTheme();
+  const getFillColor = (step: number) => {
+    return theme.theme === 'dark'
+      ? `rgba(255, 255, 255, ${(step == 0 ? 10 : step) / 100})`
+      : `rgba(0, 0, 0, ${(step == 0 ? 10 : step) / 100})`;
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -19,7 +27,7 @@ const LightControlGroup = ({
       </CardHeader>
       <CardContent>
         <div className='flex gap-4'>
-          <div className='w-28' />
+          <div className='md:w-28 hidden md:block' />
           <div className='space-x-3 flex w-full mt-3 justify-between'>
             {[0, 20, 40, 60, 80, 100].map((step, index) => (
               <CustomTooltip key={index} content={<p>{`${step}%`}</p>}>
@@ -27,9 +35,7 @@ const LightControlGroup = ({
                   key={index}
                   size={32}
                   cursor='pointer'
-                  className={`${
-                    step === 0 ? 'fill-foreground/10' : step !== 100 && `fill-foreground/${step}`
-                  }`}
+                  fill={getFillColor(step)}
                   onClick={() => updateAllSliders(step)}
                 />
               </CustomTooltip>
