@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CustomTooltip } from '@/components/ui/tooltip';
+import { getFillColor } from '@/lib/utils';
 import { LightControlGroupProps } from '@/types';
 import { useTheme } from 'next-themes';
 import { BsLightbulbFill } from 'react-icons/bs';
@@ -12,12 +13,7 @@ const LightControlGroup = ({
   handleSliderChange,
   updateAllSliders,
 }: LightControlGroupProps) => {
-  const theme = useTheme();
-  const getFillColor = (step: number) => {
-    return theme.theme === 'dark'
-      ? `rgba(255, 255, 255, ${(step == 0 ? 10 : step) / 100})`
-      : `rgba(0, 0, 0, ${(step == 0 ? 10 : step) / 100})`;
-  };
+  const { theme } = useTheme();
 
   return (
     <Card>
@@ -35,7 +31,7 @@ const LightControlGroup = ({
                   key={index}
                   size={32}
                   cursor='pointer'
-                  fill={getFillColor(step)}
+                  fill={getFillColor(step, theme)}
                   onClick={() => updateAllSliders(step)}
                 />
               </CustomTooltip>
