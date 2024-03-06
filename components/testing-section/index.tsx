@@ -5,6 +5,7 @@ import { Input } from '../ui/input';
 
 export function TestingSection() {
   const handleSubmit = async () => {
+    console.log('submitting');
     await fetch('http://localhost:3000/api/epoch-time', {
       method: 'POST',
       body: JSON.stringify({ epochTime: '123434343' }),
@@ -12,6 +13,7 @@ export function TestingSection() {
         'Content-Type': 'application/json',
       },
     });
+    console.log('submitted');
   };
   return (
     <div>
