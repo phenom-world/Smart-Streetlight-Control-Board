@@ -1,10 +1,10 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
-  time: string;
-};
-
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  res.status(200).json({ time: req.body.epochTime });
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'OPTION') {
+    res.status(200).json({ message: 'OK' });
+  }
+  if (req.method === 'POST') {
+    res.status(200).json({ time: req.body.epochTime });
+  }
 }
