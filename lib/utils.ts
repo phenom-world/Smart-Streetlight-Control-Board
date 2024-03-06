@@ -13,3 +13,5 @@ export const getFillColor = (step: number, theme?: string) => {
     ? `rgba(255, 255, 255, ${(step == 0 ? 10 : step) / 100})`
     : `rgba(0, 0, 0, ${(step == 0 ? 10 : step) / 100})`;
 };
+
+export const filePath = 'data/state.json';
